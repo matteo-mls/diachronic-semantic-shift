@@ -1,0 +1,7 @@
+Insert here the models with the name of
+ita_historical.bin
+ita_modern.bin
+spa_historical.bin
+spa_modern.bin
+
+Dowload : https://zenodo.org/record/7977342
