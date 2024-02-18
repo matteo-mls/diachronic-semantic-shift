@@ -68,10 +68,17 @@ class laws():
         #Display the result of partial correaltion
         print(y['r'].item())
 
-        # Create scatter plot
+        #Create the scatter plot
         plt.scatter(variable1, variable2)
-        plt.xlabel('Frequency values (normalised)')
-        plt.ylabel('Cosine similarity values')
+
+        # Set the font size for all elements in the plot
+        plt.rcParams.update({'font.size': 24})  # Adjust the font size as needed
+
+        plt.xlabel('Frequency values (normalized)', fontsize=24)  # Set font size for x-axis label
+        plt.ylabel('Cosine similarity values', fontsize=24)      # Set font size for y-axis label
+
+        #Set font size for x-axis and y-axis tick labels
+        plt.tick_params(axis='both', which='major', labelsize=18)
 
         #Add trendline
         z = np.polyfit(variable1, variable2, 1)
@@ -82,7 +89,7 @@ class laws():
         correlation_value = x['r'].item()
 
         #Set the correlation value as the plot title
-        plt.title(f"Correlation: {correlation_value}")
+        plt.title(f"Correlation: {correlation_value}", fontsize=24)  # Set font size for title
 
         #Display the plot
         plt.show()
@@ -137,10 +144,17 @@ class laws():
         print(y['r'].item())
 
 
-        #Create scatter plot
+        #Create the scatter plot
         plt.scatter(variable1, variable2)
-        plt.xlabel('Polysemy values')
-        plt.ylabel('Cosine similarity values')
+
+        #Set the font size for all elements in the plot
+        plt.rcParams.update({'font.size': 24})  # Adjust the font size as needed
+
+        plt.xlabel('Polysemy values', fontsize=24)  # Set font size for x-axis label
+        plt.ylabel('Cosine similarity values', fontsize=24)  # Set font size for y-axis label
+
+        #Set font size for x-axis and y-axis tick labels
+        plt.tick_params(axis='both', which='major', labelsize=18)
 
         #Add trendline
         z = np.polyfit(variable1, variable2, 1)
@@ -151,11 +165,10 @@ class laws():
         correlation_value = x['r'].item()
 
         #Set the correlation value as the plot title
-        plt.title(f"Correlation: {correlation_value}")
+        plt.title(f"Correlation: {correlation_value}", fontsize=24)  # Set font size for title
 
         #Display the plot
         plt.show()
-
 
     def analogy(self):
 
@@ -234,7 +247,7 @@ class laws():
                             hist_a.append(hist_sim[i][j])
                             mod_b.append(mod_sim[i][u])
 
-            # if not empty, calculate the difference between the cosine similarity values
+            #if not empty, calculate the difference between the cosine similarity values
             if len(correspondence_list) > 0:
                 n = 0
                 summ = 0
@@ -246,18 +259,31 @@ class laws():
                     print(f"{index+1} - For the word '{word}', the shift in cosine similarity is: {diff:.6f}")
                 avg = summ/n
                 print(f'The average difference between the K-NN is {avg:.6f}')
-            
 
-                #Plot the graph
+
                 x = range(len(correspondence_list))
 
-                plt.scatter(x, hist_a, color='blue', label='Historical Vector Space')
-                plt.scatter(x, mod_b, color='red', label='Modern Vector Space')
+                markers = ['o', 's', '^', 'v', 'D', 'p', 'H', '*', 'x', '+']
 
-                plt.xlabel('Nearest Neighbour Index')
-                plt.ylabel('Cosine Value')
-                plt.title(f'Vector Space Comparison for the word: "{self.w}". Avg. diff. = {avg:.6f}')
-                plt.legend()
+
+                #Increase the marker size by setting the s parameter
+                marker_size = 150
+
+                plt.scatter(x, hist_a, marker=markers[0], color='blue', label='Historical Vector Space', s=marker_size)
+                plt.scatter(x, mod_b, marker=markers[1], color='red', label='Modern Vector Space', s=marker_size)
+
+                #Set the font size for all elements in the plot
+                plt.rcParams.update({'font.size': 24})  # Adjust the font size as needed
+
+                plt.xlabel('Nearest Neighbour Index', fontsize=24)  # Set font size for x-axis label
+                plt.ylabel('Cosine Value', fontsize=24)  # Set font size for y-axis label
+                plt.title(f'Vector Space Comparison for the word: "{self.w}"', fontsize=24)  # Set font size for title
+
+                #Set font size for legend
+                plt.legend(fontsize=18)
+
+                #Set font size for x-axis and y-axis tick labels
+                plt.tick_params(axis='both', which='major', labelsize=18)
 
                 plt.show()
                 break
